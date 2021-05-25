@@ -11,7 +11,7 @@ RUN apt-get install -y git nano build-essential
 RUN apt-get install -y gcc-multilib g++-multilib fftw3-dev
 
 # Set-up Android Repo Tools
-RUN apt-get install -y curl python3 && curl https://commondatastorage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo
+RUN apt-get install -y curl python3 ssh && curl https://commondatastorage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo
 #RUN ln -s /usr/bin/python3 /usr/bin/python
 
 WORKDIR /
@@ -28,7 +28,7 @@ WORKDIR /bsim
 USER user
 
 ENV NRFX_BASE=/bsim/nrfx/
-RUN git clone --branch=v2.4.0 https://github.com/NordicSemiconductor/nrfx.git /bsim/nrfx
+RUN git clone --branch=v2.5.0 https://github.com/NordicSemiconductor/nrfx.git /bsim/nrfx
 
 # Synchronize BabbleSim repository
 RUN repo init -u https://github.com/BabbleSim/manifest.git -m everything.xml -b master
