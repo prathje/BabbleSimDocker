@@ -12,7 +12,7 @@ RUN apt-get install -y gcc-multilib g++-multilib fftw3-dev
 
 # Set-up Android Repo Tools
 RUN apt-get install -y curl python3 && curl https://commondatastorage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo
-RUN ln -s /usr/bin/python3 /usr/bin/python
+#RUN ln -s /usr/bin/python3 /usr/bin/python
 
 WORKDIR /
 
