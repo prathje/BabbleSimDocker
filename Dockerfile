@@ -20,12 +20,9 @@ ENV BSIM_OUT_PATH=/bsim/
 ENV BSIM_COMPONENTS_PATH=/bsim/components/
 
 RUN mkdir -p /bsim
-RUN chown -Rf user:user /bsim
 RUN mkdir -p /zephyr
-RUN chown -Rf user:user /zephyr
 
 WORKDIR /bsim
-USER user
 
 ENV NRFX_BASE=/bsim/nrfx/
 RUN git clone --branch=v2.5.0 https://github.com/NordicSemiconductor/nrfx.git /bsim/nrfx
@@ -34,6 +31,10 @@ RUN git clone --branch=v2.5.0 https://github.com/NordicSemiconductor/nrfx.git /b
 RUN repo init -u https://github.com/BabbleSim/manifest.git -m everything.xml -b master
 RUN repo sync
 
+RUN chown -Rf user:user /bsim
+RUN chown -Rf user:user /zephyr
+
+USER user
 # Build everything
 RUN make everything -j 8
 
